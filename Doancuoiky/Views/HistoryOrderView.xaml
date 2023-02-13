@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Doancuoiky.Views.HistoryOrderView"
+             xmlns:vm="clr-namespace:Doancuoiky.ViewModels"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:helpers="clr-namespace:Doancuoiky.Helpers">
+    <ContentPage.BindingContext>
+        <vm:HistoryOrderViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid BackgroundColor="#3c36ad">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <BoxView Grid.Row="0"/>
+            <Label Text="Đơn hàng đã đặt" FontSize="40" TextColor="WhiteSmoke"
+                   FontFamily="GoogleSans"
+                   HorizontalOptions="Center" VerticalOptions="Center"/>
+
+            <!--<Label x:Name="LabelName" FontSize="Subtitle" TextColor="WhiteSmoke"
+                   HorizontalOptions="Center" VerticalOptions="End"/>-->
+
+            <ImageButton Source="{FontImage FontFamily=FontAwesome,
+                    Glyph={x:Static helpers:IconFont.ArrowLeft},Size=30,Color=White}"
+                         Grid.Row="0" HorizontalOptions="Start" Aspect="AspectFit"
+                         VerticalOptions="Center" Margin="10,30" Clicked="ImageButton_Clicked_1"
+                         BackgroundColor="Transparent"/>
+            <pancake:PancakeView Grid.Row="1" BackgroundColor="WhiteSmoke"
+                                 CornerRadius="60,60,0,0">
+                <ListView x:Name="ListViewCartItems" Margin="20"
+                          SeparatorVisibility="None" BackgroundColor="WhiteSmoke"
+                          ItemsSource="{Binding Orders}"
+                          Header="" HasUnevenRows="True"
+                          ItemSelected="ListViewCartItems_ItemSelected">
+                    <!--<ListView.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="Mã đặt hàng" Grid.Column="0" FontSize="Subtitle"
+                                       TextColor="Black" HorizontalTextAlignment="Center"/>
+                                <Label Text="Tổng giá tiền" Grid.Column="1" FontSize="Subtitle"
+                                       TextColor="Black" HorizontalTextAlignment="Center"/>
+                                <Label Text="Địa chỉ " Grid.Column="2" FontSize="Subtitle"
+                                       TextColor="Black" HorizontalTextAlignment="Center"/>
+                                <Label Text="Điện thoại" Grid.Column="3" FontSize="Subtitle"
+                                       TextColor="Black" HorizontalTextAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.HeaderTemplate>-->
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Frame HasShadow="False" BackgroundColor="#3c36ad" 
+                                           CornerRadius="20" Margin="0,10">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Text="Mã đặt hàng : " Grid.Column="0" Grid.Row="0" FontSize="Subtitle"
+                                       TextColor="WhiteSmoke" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                                            <Label Text="Tổng giá tiền : " Grid.Column="0" FontSize="Subtitle" Grid.Row="1"
+                                       TextColor="WhiteSmoke" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                                            <Label Text="Địa chỉ : " Grid.Column="0" FontSize="Subtitle" Grid.Row="2"
+                                       TextColor="WhiteSmoke" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+                                            <Label Text="Điện thoại : " Grid.Column="0" FontSize="Subtitle" Grid.Row="3"
+                                       TextColor="WhiteSmoke" HorizontalTextAlignment="Start" FontAttributes="Bold"/>
+
+                                            <Label Text="{Binding OrderId}" Grid.Column="1" FontSize="Body" Grid.Row="0"
+                                        TextColor="Cyan" HorizontalTextAlignment="Start"/>
+                                            <Label Text="{Binding TotalCost,StringFormat='{0:N0} VNĐ'}" Grid.Column="1" FontSize="Body" Grid.Row="1"
+                                        TextColor="Cyan" HorizontalTextAlignment="Start"/>
+                                            <Label Text="{Binding Address}" Grid.Column="1" FontSize="Body" Grid.Row="2"
+                                        TextColor="Cyan" HorizontalTextAlignment="Start"/>
+                                            <Label Text="{Binding Phone}" Grid.Column="1" FontSize="Body" Grid.Row="3"
+                                        TextColor="Cyan" HorizontalTextAlignment="Start"/>
+                                        </Grid>
+                                    </Frame>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </pancake:PancakeView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

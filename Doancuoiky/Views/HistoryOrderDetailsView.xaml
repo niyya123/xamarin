@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:helpers="clr-namespace:Doancuoiky.Helpers"
+             xmlns:vm="clr-namespace:Doancuoiky.ViewModels"
+             x:Class="Doancuoiky.Views.HistoryOrderDetailsView">
+    <ContentPage.BindingContext>
+        <vm:HistoryOrderDetailsViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid BackgroundColor="#3c36ad">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <BoxView Grid.Row="0"/>
+            <Label Text="Chi tiết đơn hàng" FontSize="40" TextColor="WhiteSmoke"
+                   FontFamily="GoogleSans"
+                   HorizontalOptions="Center" VerticalOptions="Center"/>
+
+            <Label x:Name="LabelName" FontSize="Subtitle" TextColor="WhiteSmoke"
+                   HorizontalOptions="Center" VerticalOptions="End"/>
+
+            <ImageButton Source="{FontImage FontFamily=FontAwesome,
+                    Glyph={x:Static helpers:IconFont.ArrowLeft},Size=30,Color=White}"
+                         Grid.Row="0" HorizontalOptions="Start" Aspect="AspectFit" BackgroundColor="Transparent"
+                         VerticalOptions="Center" Margin="10,30" Clicked="ImageButton_Clicked"/>
+            <pancake:PancakeView Grid.Row="1" BackgroundColor="WhiteSmoke"
+                                 CornerRadius="60,60,0,0">
+                <ListView x:Name="ListViewCartItems" Margin="20"
+                          SeparatorVisibility="None" BackgroundColor="WhiteSmoke"
+                          ItemsSource="{Binding OrderDetailss}"
+                          Header="" HasUnevenRows="True">
+                    <ListView.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--<Label Text="Mã sản phẩm" Grid.Column="0" FontSize="Subtitle"
+                                       TextColor="Green"/>
+                                <Label Text="Tên sản phẩm" Grid.Column="1" FontSize="Subtitle"
+                                       TextColor="Green"/>
+                                <Label Text="Giá tiền" Grid.Column="2" FontSize="Subtitle"
+                                       TextColor="Green"/>
+                                <Label Text="Số lượng" Grid.Column="3" FontSize="Subtitle"
+                                       TextColor="Green"/>
+                                <Label Text="Tổng tiền" Grid.Column="4" FontSize="Subtitle"
+                                       TextColor="Green"/>-->
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.HeaderTemplate>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Frame HasShadow="False" BackgroundColor="#3c36ad" HeightRequest="105"
+                                           CornerRadius="20" Margin="0,10">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="100"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="3*"/>
+                                                <!--<ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>-->
+                                            </Grid.ColumnDefinitions>
+
+                                            <!--<Label Text="{Binding ProductId}" Grid.Column="0" FontSize="Body"
+                                        TextColor="Green"/>
+                                        <Label Text="{Binding ProductName}" Grid.Column="1" FontSize="Body"
+                                        TextColor="Green"/>
+                                        <Label Text="{Binding Price}" Grid.Column="2" FontSize="Body"
+                                        TextColor="Green"/>
+                                        <Label Text="{Binding Quantity}" Grid.Column="3" FontSize="Body"
+                                        TextColor="Green"/>-->
+                                            <pancake:PancakeView Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                                                             CornerRadius="12" Margin="0,0,10,0">
+                                                <Image Source="{Binding Image}"  Grid.Column="0" BackgroundColor="Transparent"></Image>
+                                            </pancake:PancakeView>
+                                            
+                                            <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                                <Label Text="{Binding ProductName}" FontSize="Body"
+                                        TextColor="White" />
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label FontSize="Body" TextColor="White">Giá:</Label>
+                                                    <Label Text="{Binding Price, StringFormat='{0:N0} VNĐ'}" FontSize="Body"
+                                        TextColor="White" HorizontalOptions="Center"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label FontSize="Body" TextColor="White">Số lượng:</Label>
+                                                    <Label Text="{Binding Quantity, Mode=TwoWay}" FontSize="Body"
+                                        TextColor="White" HorizontalOptions="Center"/>
+                                                    <!--<Button Command="{Binding Increase }"></Button>-->
+                                                </StackLayout>
+
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </pancake:PancakeView>
+            <Label Text="{Binding TotalCost, StringFormat='Total cost : {0:N0} VNĐ'}" Grid.Row="2" FontSize="Body"
+                   TextColor="White" HorizontalOptions="Center" Padding="10"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

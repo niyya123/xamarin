@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:Doancuoiky.Helpers"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="Doancuoiky.Views.ProductDetailsView">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="230"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+
+            <ImageButton Grid.Row="0" Aspect="AspectFit"
+                             BackgroundColor="Transparent"
+                             Source="{FontImage FontFamily=FontAwesome,
+                    Glyph={x:Static helpers:IconFont.ArrowLeft},Size=30,Color=Black}"
+                             Margin="5,10,0,0" HorizontalOptions="Start" VerticalOptions="Start"
+                             Clicked="ImageButton_Clicked"/>
+            <Image Grid.Row="1" Source="{Binding SelectedProduct.ImageUrl}"
+                   Aspect="AspectFit" HeightRequest="200" VerticalOptions="Start"/>
+            <Label Grid.Row="2" Text="{Binding SelectedProduct.Name, StringFormat='Thông tin {0}'}"
+                   TextColor="#3b3a36" FontAttributes="Bold" FontSize="25" HorizontalOptions="Center"/>
+            <StackLayout Grid.Row="3" Spacing="10" Padding="10"
+                         VerticalOptions="Start" BackgroundColor="#3c36ad">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Mã sản phẩm : " FontSize="Subtitle" Grid.Row="0" Grid.Column="0" TextColor="WhiteSmoke"/>
+                    <Label Text="{Binding SelectedProduct.ProductID}"
+                           FontSize="Subtitle" TextColor="Cyan" Grid.Row="0" Grid.Column="1"/>
+
+                    <Label Text="Tên sản phẩm : " FontSize="Subtitle" Grid.Row="1" Grid.Column="0" TextColor="WhiteSmoke"/>
+                    <Label Text="{Binding SelectedProduct.Name}"
+                           FontSize="Subtitle" TextColor="Cyan" Grid.Row="1" Grid.Column="1"/>
+
+                    <Label Text="Mô tả : " FontSize="Subtitle" Grid.Row="2" Grid.Column="0" TextColor="WhiteSmoke"/>
+                    <Label Text="{Binding SelectedProduct.Description}"
+                           FontSize="Subtitle" TextColor="Cyan" Grid.Row="2" Grid.Column="1"/>
+
+                    <Label Text="Số sao đánh giá : " FontSize="Subtitle" Grid.Row="3" Grid.Column="0" TextColor="WhiteSmoke"/>
+                    <Label Text="{Binding SelectedProduct.Rating}"
+                           FontSize="Subtitle" TextColor="Cyan" Grid.Row="3" Grid.Column="1"/>
+
+                    <Label Text="Giá tiền : " FontSize="Subtitle" Grid.Row="4" Grid.Column="0" TextColor="WhiteSmoke"/>
+                    <Label Text="{Binding SelectedProduct.Price, StringFormat='{0:N0} VNĐ'}"
+                           FontSize="Subtitle" TextColor="Cyan" Grid.Row="4" Grid.Column="1"/>
+                </Grid>
+            </StackLayout>
+
+            <Grid Grid.Row="4" HorizontalOptions="Center" VerticalOptions="End">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Text="-" FontSize="30" TextColor="white"
+                        BackgroundColor="Purple" Grid.Column="0"
+                        HorizontalOptions="End"
+                        Command="{Binding DecrementCommand}"/>
+
+                <Entry Text="{Binding TotalQuantity}"
+                       HorizontalTextAlignment="Center" FontSize="30"
+                       Grid.Column="1"/>
+
+                <Button Text="+" FontSize="30" TextColor="white"
+                        BackgroundColor="Purple" Grid.Column="2"
+                        HorizontalOptions="End"
+                        Command="{Binding IncrementCommand}"/>
+            </Grid>
+            <Grid Grid.Row="5" VerticalOptions="End">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <pancake:PancakeView CornerRadius="0,20,60,0"
+                                     HorizontalOptions="Center" Grid.Row="0" Grid.Column="0">
+                    <Button Text="Thêm vào giỏ hàng" BackgroundColor="LimeGreen"
+                            TextColor="WhiteSmoke"
+                            HorizontalOptions="Center"
+                            Command="{Binding AddToCartCommand}"
+                            HeightRequest="50"
+                            Margin="10,0,5,0"/>
+                </pancake:PancakeView>
+                <pancake:PancakeView CornerRadius="0,20,60,0"
+                                     HorizontalOptions="Center" Grid.Row="0" Grid.Column="1">
+                    <Button Text="Xem giỏ hàng" BackgroundColor="Orange"
+                            TextColor="WhiteSmoke"
+                            HorizontalOptions="Center"
+                            Command="{Binding ViewCartCommand}"
+                            HeightRequest="50"
+                            Margin="5,0,10,0"/>
+                </pancake:PancakeView>
+            </Grid>
+            <pancake:PancakeView Grid.Row="6" CornerRadius="60,60,0,0" VerticalOptions="End">
+                <Button Text="Về trang chủ" BackgroundColor="#3c36ad"
+                        TextColor="WhiteSmoke"
+                        HeightRequest="50"
+                        Command="{Binding HomeCommand}"
+                        Margin="10,0,10,0"/>
+            </pancake:PancakeView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

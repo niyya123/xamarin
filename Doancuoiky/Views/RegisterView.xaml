@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Doancuoiky.Views.RegisterView"
+             xmlns:vm="clr-namespace:Doancuoiky.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0" VerticalOptions="Center" Margin="0,40,0,0">
+                <Image Source="laptopscreen.png" WidthRequest="100" HeightRequest="100"/>
+                <Label Text="Laptop Shop" FontFamily="Font1" TextColor="Blue" FontSize="40" HorizontalOptions="Center"/>
+            </StackLayout>
+            <StackLayout Grid.Row="1" VerticalOptions="Center" Margin="0,-20,0,0">
+                <Frame Margin="30,0,30,0" CornerRadius="10" BorderColor="WhiteSmoke">
+                    <Entry Placeholder="Nhập tài khoản" Text="{Binding Username}" PlaceholderColor="Black" TextColor="Blue" HeightRequest="40" />
+                </Frame>
+                <Frame Margin="30,0,30,0" CornerRadius="10" BorderColor="WhiteSmoke">
+                    <Entry Placeholder="Nhập mật khẩu" Text="{Binding Password}" PlaceholderColor="Black" TextColor="Blue" HeightRequest="40" IsPassword="True"/>
+                </Frame>
+
+                <Frame Margin="30,0,30,0" CornerRadius="10" BorderColor="WhiteSmoke">
+                    <Entry Placeholder="Nhập nick name" Text="{Binding Nickname}" PlaceholderColor="Black" TextColor="Blue" WidthRequest="50"/>
+                </Frame>
+
+                <Frame Margin="30,0,30,0" CornerRadius="10" BorderColor="WhiteSmoke">
+                    <Entry Placeholder="Nhập Địa chỉ" Text="{Binding Address}" PlaceholderColor="Black" TextColor="Blue" WidthRequest="50"/>
+                </Frame>
+
+                <Frame Margin="30,0,30,0" CornerRadius="10" BorderColor="WhiteSmoke">
+                    <Entry Placeholder="Nhập Số điện thoại" Text="{Binding Sdt}" PlaceholderColor="Black" TextColor="Blue" WidthRequest="50" Keyboard="Numeric"/>
+                </Frame>
+
+                <Button Text="Đăng ký" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" BackgroundColor="Orange" TextColor="white"
+                        WidthRequest="200" HeightRequest="60" CornerRadius="20"
+                        Command="{Binding RegisterCommand}"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

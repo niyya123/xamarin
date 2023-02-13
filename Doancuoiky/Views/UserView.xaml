@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Doancuoiky.Views.UserView"
+             xmlns:vm="clr-namespace:Doancuoiky.ViewModels"
+             xmlns:helpers="clr-namespace:Doancuoiky.Helpers">
+    <ContentPage.BindingContext>
+        <vm:UserDetailsViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0">
+                <ImageButton Source="{FontImage FontFamily=FontAwesome,
+                Glyph={x:Static helpers:IconFont.ArrowLeft},Size=30,Color=Black}"
+                         BackgroundColor="Transparent"
+                         Grid.Row="0" HorizontalOptions="Start" Aspect="AspectFit"
+                         VerticalOptions="Start" Margin="10,30" Clicked="ImageButton_Clicked"/>
+                <Image Source="User.png" HeightRequest="100"/>
+                <CollectionView ItemsSource="{Binding Userdetails}"
+                                    VerticalOptions="Start"
+                                    VerticalScrollBarVisibility="Never"
+                                    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame HasShadow="False" BackgroundColor="#24bf7c" HeightRequest="250"
+                                           CornerRadius="20" Margin="10,10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Label Text="Nickname : "  Grid.Row="0" Grid.Column="0"
+                                           TextColor="WhiteSmoke" FontAttributes="Bold" FontSize="20"/>
+                                        <Label Text="Username : "  Grid.Row="1" Grid.Column="0"
+                                           TextColor="WhiteSmoke" FontAttributes="Bold" FontSize="20"/>
+                                        <Label Text="Địa chỉ : "  Grid.Row="2" Grid.Column="0"
+                                           TextColor="WhiteSmoke" FontAttributes="Bold" FontSize="20"/>
+                                        <Label Text="Điện thoại : "  Grid.Row="3" Grid.Column="0"
+                                           TextColor="WhiteSmoke" FontAttributes="Bold" FontSize="20"/>
+                                        <Label Text="{Binding Nickname}"  Grid.Row="0" Grid.Column="1"
+                                           TextColor="#1c6087" FontAttributes="Bold" FontSize="20"/>
+                                        <Label Text="{Binding Username}"  Grid.Row="1" Grid.Column="1"
+                                           TextColor="#1c6087" FontAttributes="Bold" FontSize="20"/>
+                                        <Label Text="{Binding Address}"  Grid.Row="2" Grid.Column="1"
+                                           TextColor="#1c6087" FontAttributes="Bold" FontSize="20"/>
+                                        <Label Text="{Binding Phone}"  Grid.Row="3" Grid.Column="1"
+                                           TextColor="#1c6087" FontAttributes="Bold" FontSize="20"/>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            <StackLayout Grid.Row="1" Margin="0,0,0,20">
+                <Button Text="Thay đổi mật khẩu" Margin="80,0,80,0" HeightRequest="60"
+                        CornerRadius="30" BackgroundColor="#1c6087" TextColor="WhiteSmoke"
+                        Clicked="Button_Clicked"/>
+                <Button Text="Thay đổi thông tin khác" Margin="80,0,80,0" HeightRequest="60"
+                        CornerRadius="30" BackgroundColor="#1c6087" TextColor="WhiteSmoke"
+                        Clicked="Button_Clicked_1"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

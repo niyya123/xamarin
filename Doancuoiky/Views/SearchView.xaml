@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Doancuoiky.Views.SearchView"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:helpers="clr-namespace:Doancuoiky.Helpers">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Grid.Row="1" Grid.Column="0" Margin="10,0,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Frame  Margin="30,0,30,0" HeightRequest="25" CornerRadius="10">
+                <StackLayout Orientation="Horizontal">
+                    <SearchBar TextChanged="SearchBar_TextChanged" Placeholder="Tìm sản phẩm" 
+                               PlaceholderColor="Orange" WidthRequest="200"/>
+                    <pancake:PancakeView Grid.Column="0" CornerRadius="0,25,0,25">
+                        <ImageButton 
+                             BackgroundColor="#3c36ad"
+                             Padding="10,0,10,0"
+                             HorizontalOptions="End"
+                             Margin="0,0,-1,0"
+                             Source="{FontImage FontFamily=FontAwesome,
+                    Glyph={x:Static helpers:IconFont.MagnifyingGlass},Size=30,Color=White }"/>
+                    </pancake:PancakeView>
+                </StackLayout>
+            </Frame>
+            <ListView x:Name="HotelView" HasUnevenRows="True" SeparatorColor="#3c36ad"
+                      SelectionMode="Single" IsPullToRefreshEnabled="true" ItemSelected="HotelView_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Margin="30,10,30,10"  Aspect="AspectFill"  Source="{Binding ImageUrl}" HeightRequest="100" WidthRequest="100"  ></Image>
+                                <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                    <Label Text="{Binding Name}" FontSize="20" TextColor="#3c36ad"></Label>
+                                    <Label Text="{Binding Price,StringFormat='{0:c}'}" FontSize="18" TextColor="#3b3a36"></Label>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:Doancuoiky.Helpers"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="Doancuoiky.Views.OrdersView"
+             BackgroundColor="#3c36ad">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>                    
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Orientation="Horizontal">
+                    <ImageButton Source="{FontImage FontFamily=FontAwesome,
+                    Glyph={x:Static helpers:IconFont.ArrowLeft},Size=30,Color=white}"
+                                 Grid.Row="0" Grid.Column="0"
+                         HorizontalOptions="Start" Aspect="AspectFit"
+                         BackgroundColor="Transparent"
+                         VerticalOptions="Center" Margin="10,30" Clicked="ImageButton_Clicked"/>
+
+                    <Label Text="Cảm ơn đã đặt hàng" FontSize="40" TextColor="WhiteSmoke"
+                           Grid.Row="0" Grid.Column="1"
+                   FontFamily="GoogleSans" HorizontalOptions="Start" VerticalOptions="Center"/>
+                </StackLayout>
+
+                <Label x:Name="LabelName" FontSize="Subtitle" Margin="20,0" TextColor="WhiteSmoke"
+                       Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                   HorizontalOptions="Center" VerticalOptions="End"/>
+            </Grid>
+
+            <pancake:PancakeView BackgroundColor="WhiteSmoke" CornerRadius="60,60,0,0"
+                                 Grid.Row="1">
+                <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="Cảm ơn vì đã đặt hàng ở chúng tôi" TextColor="#3c36ad" HorizontalOptions="Center" FontSize="25" FontAttributes="Bold"/>
+                    <Label Text="Vui lòng ghi nhớ mã đặt hàng cho các tác vụ trong tương lai" TextColor="#3c36ad" HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                           FontSize="20" FontAttributes="Bold"/>
+                    <Label x:Name="LabelOrderID" TextColor="Orange"
+                           FontSize="16"
+                           HorizontalTextAlignment="Center"/>
+
+                    <Button Text="Xem thêm mặt hàng khác"
+                            WidthRequest="200"
+                            TextColor="WhiteSmoke"
+                            BackgroundColor="#3c36ad"
+                            HorizontalOptions="Center"
+                            CornerRadius="20" Clicked="Button_Clicked"/>
+                </StackLayout>
+            </pancake:PancakeView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

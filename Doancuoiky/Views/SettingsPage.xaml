@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Doancuoiky.Views.SettingsPage"
+             Title="Trang quản lý của Admin">
+    <NavigationPage.TitleView>
+        <Label Text="Trang quản lý của Admin"
+               TextColor="white"
+               FontSize="25"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"/>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="0,10,0,0">
+            <Label Text="Button thêm category laptop" HorizontalOptions="Center"
+                   FontSize="16" TextColor="#3c36ad"/>
+            <Button Text="Quản lý các loại laptop" x:Name="ButtonCategories"
+                    Clicked="ButtonCategories_Clicked" FontSize="18" TextColor="WhiteSmoke" BackgroundColor="#3c36ad" CornerRadius="20"
+                       FontAttributes="Bold" Margin="0,5,0,5" HorizontalOptions="Center" />
+            <Label Text="Button thêm dũ liệu các laptop" HorizontalOptions="Center"
+                   FontSize="16" TextColor="#3c36ad"/>
+            <Button Text="Quản lý các laptop" x:Name="ButtonProducts"
+                    Clicked="ButtonProducts_Clicked" FontSize="18" TextColor="WhiteSmoke" BackgroundColor="#3c36ad" CornerRadius="20"
+                       FontAttributes="Bold" Margin="0,5,0,5" HorizontalOptions="Center" />
+            <Label Text="Button thêm giỏ hàng cho người dùng" HorizontalOptions="Center"
+                   FontSize="16" TextColor="#3c36ad"/>
+            <Button Text="Quản lý giỏ hàng" x:Name="ButtonCart"
+                    Clicked="ButtonCart_Clicked" FontSize="18" TextColor="WhiteSmoke" BackgroundColor="#3c36ad" CornerRadius="20"
+                       FontAttributes="Bold" Margin="0,5,0,5" HorizontalOptions="Center" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

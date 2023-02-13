@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Doancuoiky.Views.ChangeInfoView"
+             xmlns:vm="clr-namespace:Doancuoiky.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:ChangeViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+            <Entry x:Name="newnickname" Placeholder="Nhập nickname mới" TextChanged="newnickname_TextChanged"
+                   Margin="60,0,60,0" HorizontalTextAlignment="Center"/>
+            <Entry x:Name="newaddress" Placeholder="Nhập địa chỉ mới" TextChanged="newaddress_TextChanged"
+                   Margin="60,0,60,0" HorizontalTextAlignment="Center"/>
+            <Entry x:Name="newphone" Placeholder="Nhập số điện thoại mới" TextChanged="newphone_TextChanged"
+                   Margin="60,0,60,0" HorizontalTextAlignment="Center"/>
+            <StackLayout>
+                <Button Text="Đổi thông tin" Command="{Binding ChangeInfoCommand}" Margin="60,0,60,0"
+                        BackgroundColor="#1c6087" TextColor="WhiteSmoke" CornerRadius="20"
+                        Clicked="Button_Clicked_2"/>
+                <Button Text="Reset" Clicked="Button_Clicked_1" Margin="60,0,60,0"
+                        BackgroundColor="#1c6087" TextColor="WhiteSmoke" CornerRadius="20"/>
+            </StackLayout>
+            <Button Text="Quay về trang người dùng" Clicked="Button_Clicked" Margin="60,0,60,0"
+                    BackgroundColor="#1c6087" TextColor="WhiteSmoke" CornerRadius="20"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

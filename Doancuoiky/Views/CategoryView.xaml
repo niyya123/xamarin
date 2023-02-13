@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:helpers="clr-namespace:Doancuoiky.Helpers"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="Doancuoiky.Views.CategoryView">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0" Source="{Binding SelectedCategory.CategoryPoster}"
+                   Aspect="AspectFit" VerticalOptions="Start"/>
+            <Label Grid.Row="1" Text="{Binding SelectedCategory.CategoryName}" TextColor="white"
+                   FontAttributes="Bold" FontSize="35" Margin="25,-85,0,0"/>
+            <ImageButton Source="{FontImage FontFamily=FontAwesome,
+                Glyph={x:Static helpers:IconFont.ArrowLeft},Size=30,Color=White}"
+                         Grid.Row="0" HorizontalOptions="Start" Aspect="AspectFit"
+                         VerticalOptions="Start" Margin="10,30" Clicked="ImageButton_Clicked"
+                         BackgroundColor="Transparent"/>
+
+            <pancake:PancakeView Grid.Row="2" CornerRadius="30" BackgroundColor="white" Margin="0,-40">
+                <Grid Padding="25,30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding TotalProducts,
+                        StringFormat='Tổng cộng có {0} sản phẩm'}" FontAttributes="Bold" FontSize="18"
+                           TextColor="Orange"/>
+                    <Image Grid.Row="0" Grid.Column="1" Source="More" WidthRequest="30"/>
+
+                    <CollectionView ItemsSource="{Binding ProductsByCategory}"
+                                    VerticalOptions="Start"
+                                    VerticalScrollBarVisibility="Never"
+                                    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                    SelectionMode="Single"
+                                    SelectionChanged="CollectionView_SelectionChanged">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Frame HasShadow="False" BackgroundColor="#3c36ad" HeightRequest="105"
+                                           CornerRadius="20" Margin="0,10">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <pancake:PancakeView Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                                                             CornerRadius="12" Margin="0,0,10,0">
+                                                <Image Source="{Binding ImageUrl}" HeightRequest="90"
+                                                   WidthRequest="95" Aspect="AspectFill"
+                                                       BackgroundColor="Transparent"/>
+                                            </pancake:PancakeView>
+
+                                            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                                                   Text="{Binding Name}" FontSize="18" FontAttributes="Bold"
+                                                   TextColor="WhiteSmoke"/>
+                                            <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                                                   Text="{Binding Description}" FontSize="16"
+                                                   TextColor="WhiteSmoke"/>
+                                            <Image Grid.Row="2" Grid.Column="1" Source="Star"
+                                                   HorizontalOptions="Start" WidthRequest="20"/>
+                                            <Label Grid.Row="2" Grid.Column="1" Margin="30,0,0,0"
+                                                   FontSize="14" VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Rating}" FontAttributes="Bold" TextColor="red"/>
+                                                        <Span Text=" "/>
+                                                        <Span Text="{Binding RatingDetail,StringFormat='({0} lượt bình chọn)'}" TextColor="WhiteSmoke"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Image Grid.Row="0" Grid.Column="2" Source="{Binding HomeSelected}"
+                                                   HeightRequest="15"/>
+                                        </Grid>
+                                    </Frame>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </pancake:PancakeView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

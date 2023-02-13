@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:helpers="clr-namespace:Doancuoiky.Helpers"
+             x:Class="Doancuoiky.Views.LogoutView"
+             xmlns:vm="clr-namespace:Doancuoiky.ViewModels"
+             BackgroundColor="#3c36ad">
+    <ContentPage.BindingContext>
+        <vm:LogoutViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <ImageButton Source="{FontImage FontFamily=FontAwesome,
+                    Glyph={x:Static helpers:IconFont.ArrowLeft},Size=30,Color=white}"
+                         Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" Aspect="AspectFit"
+                         VerticalOptions="Center" Margin="10,30" Clicked="ImageButton_Clicked"
+                         BackgroundColor="Transparent"/>
+
+            <Label Text="Đăng xuất" FontSize="30" TextColor="WhiteSmoke" Grid.Row="0" Grid.Column="1" 
+                   VerticalOptions="Center" HorizontalOptions="Start"/>
+
+            <pancake:PancakeView BackgroundColor="WhiteSmoke" 
+                                 Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                    <StackLayout>
+                        <Label Text="Bạn có thực sự muốn đăng xuất ?" FontSize="20" FontAttributes="Bold"/>
+                        <StackLayout Orientation="Vertical" Spacing="10">
+                            <Button Text="Vẫn đăng xuất" HorizontalOptions="Center" BackgroundColor="Red" CornerRadius="20"
+                                    Command="{Binding LogoutCommand}"/>
+                            <Button Text="Quay về giỏ hàng" HorizontalOptions="Center" BackgroundColor="LightGreen" CornerRadius="20"
+                                    Command="{Binding GotoCartCommand}"/>
+                            <Button Text="Quay về trang chủ" HorizontalOptions="Center" BackgroundColor="Cyan" CornerRadius="20"
+                                    Command="{Binding GotoProductCommand}"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </pancake:PancakeView>
+                            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
